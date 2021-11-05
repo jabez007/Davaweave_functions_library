@@ -14,7 +14,7 @@
 ```
 %dw 2.0
 
-fun _range(start: Number, stop: Number, step: Number, sequence: Array<Number>): Array<Number> = 
+fun range_(start: Number, stop: Number, step: Number, sequence: Array<Number>): Array<Number> = 
     if (start == stop)
         [] // error
     else if (step == 0)
@@ -26,16 +26,16 @@ fun _range(start: Number, stop: Number, step: Number, sequence: Array<Number>): 
     else if (sizeOf(sequence) == 1 and sequence[0] != start)
         [] // error
     else if (step < 0)
-        range(stop - step, start - step, -step, [])[-1 to 0] // flip
-    else if (sizeOf(sequence) == 0)
-        range(start, stop, step, [start]) // initialize
+        range_(stop - step, start - step, -step, [])[-1 to 0] // flip
+    else if (isEmpty(sequence))
+        range_(start, stop, step, [start]) // initialize
     else if(sequence[-1] + step >= stop )
         sequence // done
     else
-        range(start, stop, step, sequence ++ [sequence[-1] + step]) // continue
+        range_(start, stop, step, sequence ++ [sequence[-1] + step]) // continue
 
 fun range(start: Number, stop: Number, step: Number): Array<Number> = 
-    _range(start, stop, step, [])
+    range_(start, stop, step, [])
 
 fun range(start: Number, stop: Number): Array<Number> =
     range(start, stop, 1)
