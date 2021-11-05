@@ -1,4 +1,4 @@
-# Davaweave_functions_library
+# Davaweave Functions Library
 Library of Dataweave functions I've found useful
 
 ## damerauLevenshteinDistance
